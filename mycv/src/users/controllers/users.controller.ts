@@ -7,5 +7,8 @@ export class UsersController {
 	constructor(public usersService: UsersService) {}
 
 	@Post("/signup")
-	createUser(@Body() body: CreateUserDto) {}
+	async createUser(@Body() body: CreateUserDto) {
+		const { email, password } = body;
+		return await this.usersService.create(email, password);
+	}
 }
